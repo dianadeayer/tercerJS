@@ -4,6 +4,9 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+//require de nuevo archivo ordenador.js
+const sortArray = require("./ordenador");
+
 //validación
 const validCoordinates = (lat, lon) => {
   return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
@@ -26,6 +29,12 @@ const showResult = (isValid) => {
   console.log(isValid ? "Valid coordinates" : "Invalid coordinates");
 };
 
+//arreglo vacio para guardar coordenadas
+let coordinatesArray = [];
+// contador para cantidas de coordenadas
+let count = 0;
+const maxCount = 5;
+
 const handleInput = (latInput, lonInput) => {
   const { lat, lon } = convertToNumber(latInput, lonInput);
 
@@ -33,9 +42,14 @@ const handleInput = (latInput, lonInput) => {
     console.log("Please enter valid numbers.");
   } else {
     showResult(validCoordinates(lat, lon));
+    coordinatesArray.push({ lat, lon });
   }
-  // se cierra la interfaz de readline
-  rl.close();
+  count++;
+  if (count < maxCount) {
+    getCoordinates();
+  } else {
+    rl.close();
+  }
 };
 
 // Solo pide los datos
