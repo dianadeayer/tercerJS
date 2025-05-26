@@ -4,8 +4,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-//require de nuevo archivo ordenador.js
-const sortArray = require("./ordenador");
+//import archivo ordenador.js
+import sortArray from "./ordenador.js";
 
 //validación
 const validCoordinates = (lat, lon) => {
@@ -49,6 +49,8 @@ const handleInput = (latInput, lonInput) => {
     getCoordinates();
   } else {
     rl.close();
+    const sorted = sortArray(coordinatesArray);
+    console.log("Sorted coordinates:", sorted);
   }
 };
 
