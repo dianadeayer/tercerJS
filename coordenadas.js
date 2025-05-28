@@ -1,13 +1,13 @@
+//import archivo ordenador.js
+import sortArray from "./ordenador.js";
+
 import readline from "node:readline";
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-//import archivo ordenador.js
-import sortArray from "./ordenador.js";
-
-//validación
+//validación de coordenadas
 const validCoordinates = (lat, lon) => {
   return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 };
@@ -31,7 +31,6 @@ const showResult = (isValid) => {
 
 //arreglo vacio para guardar coordenadas
 let coordinatesArray = [];
-// contador para cantidas de coordenadas
 let count = 0;
 const maxCount = 5;
 
@@ -54,7 +53,6 @@ const handleInput = (latInput, lonInput) => {
   }
 };
 
-// Solo pide los datos
 const getCoordinates = () => {
   rl.question("Enter latitude: ", (latInput) => {
     rl.question("Enter longitude: ", (lonInput) => {
